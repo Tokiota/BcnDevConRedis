@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PoblacionesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityType Name="Poblacion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="IdProvincia" Type="int" />
+          <Property Name="Poblacion" Type="int" />
+        </EntityType>
+        <EntityType Name="Provincias">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Poblacion_Poblacion">
+          <End Role="Poblacion" Type="Self.Poblacion" Multiplicity="1" />
+          <End Role="Poblacion1" Type="Self.Poblacion" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Poblacion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Poblacion1">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Poblacion_Provincias">
+          <End Role="Provincias" Type="Self.Provincias" Multiplicity="0..1" />
+          <End Role="Poblacion" Type="Self.Poblacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provincias">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Poblacion">
+              <PropertyRef Name="IdProvincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PoblacionesModelStoreContainer">
+          <EntitySet Name="Poblacion" EntityType="Self.Poblacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Provincias" EntityType="Self.Provincias" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Poblacion_Poblacion" Association="Self.FK_Poblacion_Poblacion">
+            <End Role="Poblacion" EntitySet="Poblacion" />
+            <End Role="Poblacion1" EntitySet="Poblacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Poblacion_Provincias" Association="Self.FK_Poblacion_Provincias">
+            <End Role="Provincias" EntitySet="Provincias" />
+            <End Role="Poblacion" EntitySet="Poblacion" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PoblacionesModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityType Name="Poblacion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdProvincia" Type="Int32" />
+          <Property Name="Poblacion1" Type="Int32" />
+          <NavigationProperty Name="Poblacion11" Relationship="Self.FK_Poblacion_Poblacion" FromRole="Poblacion" ToRole="Poblacion1" />
+          <NavigationProperty Name="Poblacion2" Relationship="Self.FK_Poblacion_Poblacion" FromRole="Poblacion1" ToRole="Poblacion" />
+          <NavigationProperty Name="Provincia" Relationship="Self.FK_Poblacion_Provincias" FromRole="Poblacion" ToRole="Provincias" />
+        </EntityType>
+        <EntityType Name="Provincia">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Poblacions" Relationship="Self.FK_Poblacion_Provincias" FromRole="Provincias" ToRole="Poblacion" />
+        </EntityType>
+        <Association Name="FK_Poblacion_Poblacion">
+          <End Role="Poblacion" Type="Self.Poblacion" Multiplicity="1" />
+          <End Role="Poblacion1" Type="Self.Poblacion" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Poblacion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Poblacion1">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Poblacion_Provincias">
+          <End Role="Provincias" Type="Self.Provincia" Multiplicity="0..1" />
+          <End Role="Poblacion" Type="Self.Poblacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provincias">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Poblacion">
+              <PropertyRef Name="IdProvincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PoblacionesEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Poblacions" EntityType="Self.Poblacion" />
+          <EntitySet Name="Provincias" EntityType="Self.Provincia" />
+          <AssociationSet Name="FK_Poblacion_Poblacion" Association="Self.FK_Poblacion_Poblacion">
+            <End Role="Poblacion" EntitySet="Poblacions" />
+            <End Role="Poblacion1" EntitySet="Poblacions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Poblacion_Provincias" Association="Self.FK_Poblacion_Provincias">
+            <End Role="Provincias" EntitySet="Provincias" />
+            <End Role="Poblacion" EntitySet="Poblacions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PoblacionesModelStoreContainer" CdmEntityContainer="PoblacionesEntities">
+          <EntitySetMapping Name="Poblacions">
+            <EntityTypeMapping TypeName="PoblacionesModel.Poblacion">
+              <MappingFragment StoreEntitySet="Poblacion">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IdProvincia" ColumnName="IdProvincia" />
+                <ScalarProperty Name="Poblacion1" ColumnName="Poblacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Provincias">
+            <EntityTypeMapping TypeName="PoblacionesModel.Provincia">
+              <MappingFragment StoreEntitySet="Provincias">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
