@@ -10,8 +10,7 @@
 namespace FillToAutocomplete.Model
 {
     using System;
-    using System.Collections.Generic;
-    
+
     public partial class Poblacion
     {
         public int Id { get; set; }

@@ -13,11 +13,13 @@
 
 </head>
 <body>
+    @Html.ActionLink("a otra página", "OtraPagina")
+    @Html.ActionLink("nueva página", "NuevaPagina", "OtroController")
 
-<h1>A Sample of jQuery UI Autocomplete With ASP.NET Web API</h1>
-<div style="margin:0 auto;width:320px"><a href="http://techbrij.com/987/jquery-ui-autocomplete-asp-net-web-api" target="_blank" style="background-color: #3B5998; border-radius: 6px; color: white; display: block; font-size: 18px; font-weight: bold; margin: 7px; min-width: 300px; padding: 10px; text-align: center; width: 320px;">View Article / Add Comment</a></div>
+    <h1>A Sample of jQuery UI Autocomplete With ASP.NET Web API</h1>
+    <div style="margin:0 auto;width:320px"><a href="http://techbrij.com/987/jquery-ui-autocomplete-asp-net-web-api" target="_blank" style="background-color: #3B5998; border-radius: 6px; color: white; display: block; font-size: 18px; font-weight: bold; margin: 7px; min-width: 300px; padding: 10px; text-align: center; width: 320px;">View Article / Add Comment</a></div>
     <div style="margin-top:10px">
-       Enter Search Terms(eg: god): <input type="text" id="txtSearch" />
+        Enter Search Terms(eg: god): <input type="text" id="txtSearch" />
         <script type="text/javascript">
             $(function () {
                 $('#txtSearch').autocomplete({
@@ -51,7 +53,7 @@
                     }
                 });
             });
-   </script>
+        </script>
     </div>
 </body>
 </html>

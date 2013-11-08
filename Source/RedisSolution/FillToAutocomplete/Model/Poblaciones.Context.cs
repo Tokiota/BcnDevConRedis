@@ -9,7 +9,6 @@
 
 namespace FillToAutocomplete.Model
 {
-    using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     

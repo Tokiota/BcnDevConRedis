@@ -56,7 +56,10 @@
     <Compile Include="BytesExtension.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PubSub.cs" />
     <Compile Include="RedisNativeClient.cs" />
+    <Compile Include="Transaccion.cs" />
+    <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

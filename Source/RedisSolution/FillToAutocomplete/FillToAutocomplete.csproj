@@ -81,7 +81,6 @@
     <Compile Include="Model\Provincia.cs">
       <DependentUpon>Poblaciones.tt</DependentUpon>
     </Compile>
-    <Compile Include="PoblacionAutocomplete.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

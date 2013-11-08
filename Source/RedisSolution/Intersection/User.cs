@@ -14,9 +14,9 @@ namespace Intersection
         {
             get; private set; 
         }
-        public void AddFriend(Friend friend)
+        public void AddFriend(string userId)
         {
-            Friends.Add(friend);
+            Friends.Add(new Friend { UserId = userId});
         }
     }
 }

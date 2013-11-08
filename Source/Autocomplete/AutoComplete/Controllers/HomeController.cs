@@ -12,5 +12,15 @@ namespace AutoComplete.Controllers
         {
             return View();
         }
+
+        public ActionResult OtraPagina()
+        {
+            return new EmptyResult();
+        }
+
+        public ActionResult NuevaPagina()
+        {
+            return new EmptyResult();
+        }
     }
 }

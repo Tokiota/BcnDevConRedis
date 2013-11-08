@@ -41,10 +41,10 @@ namespace BasicCommand
                 client.ZAdd(SET_ORDER_KEY, 325, Encoding.UTF8.GetBytes("usuario07"));
 
 
-                client.ZRangeByScore(SET_ORDER_KEY,0, 1000,null,null).PrintToConsole();
+                client.ZRangeByScore(SET_ORDER_KEY,0, 1000,null,null).ToConsole();
 
 
-                client.ZRevRangeByScore(SET_ORDER_KEY, 0, long.MaxValue,0, 3).PrintToConsole();
+                client.ZRevRangeByScore(SET_ORDER_KEY, 0, long.MaxValue,0, 3).ToConsole();
             }
         }
 
@@ -61,11 +61,11 @@ namespace BasicCommand
                 client.HSet(HASH_KEY, nombre, Encoding.UTF8.GetBytes("Daniel"));
                 client.HSet(HASH_KEY, apellido, Encoding.UTF8.GetBytes("Mazzini"));
 
-                client.HGet(HASH_KEY, nombre).PrintToConsole();
+                client.HGet(HASH_KEY, nombre).ToConsole();
 
                 
 
-                client.HGetAll(HASH_KEY).PrintToConsole();
+                client.HGetAll(HASH_KEY).ToConsole();
 
                 
                 
@@ -85,19 +85,18 @@ namespace BasicCommand
                 client.SAdd(SET_KEY, Encoding.UTF8.GetBytes("item4"));
 
 
-                client.SMembers(SET_KEY).PrintToConsole();
+                client.SMembers(SET_KEY).ToConsole();
 
                 Console.WriteLine(client.SIsMember(SET_KEY, Encoding.UTF8.GetBytes("item")));
                 Console.WriteLine(client.SIsMember(SET_KEY, Encoding.UTF8.GetBytes("noToy")));
 
                 client.SRem(SET_KEY, Encoding.UTF8.GetBytes("item"));
 
-                client.SMembers(SET_KEY).PrintToConsole();
+                client.SMembers(SET_KEY).ToConsole();
 
 
             }
         }
-
         private static void WhenStringIsValue()
         {
             using (IRedisNativeClient client = new RedisClient())
@@ -115,6 +114,20 @@ namespace BasicCommand
 
                 Console.WriteLine((string)"encontre {0}", (object)result);
             }
+
+
+        }
+
+        private static void WhenStringIsValueAndRedisClient()
+        {
+            using (IRedisClient client = new RedisClient())
+            {
+                client.Remove(STRING_KEY);
+
+                client.Add(STRING_KEY, "daniel");
+                var nombre = client.Get<string>("daniel");
+                Console.WriteLine(nombre);
+            }
         }
 
         private static void WhenListIsValue()
@@ -130,7 +143,7 @@ namespace BasicCommand
 
 
 
-                client.LRange(LIST_KEY, 0, -1).PrintToConsole();
+                client.LRange(LIST_KEY, 0, -1).ToConsole();
 
                
 

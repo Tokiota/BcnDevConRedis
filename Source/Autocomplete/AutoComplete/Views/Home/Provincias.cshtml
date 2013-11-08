@@ -1,0 +1,63 @@
+﻿@using System.Web.Mvc.Html
+@using ServiceStack.Common.Extensions
+@model AutoComplete.Models.SeleccionProvinciaModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Provincias</title>
+    </head>
+    <body>
+        <div>
+            @Html.DropDownListFor(c=> c.ComboProvinciasId, Model.Provincias)
+            
+            <select id="cmbPoblaciones"></select>
+            
+            <script language="javascript" type="text/javascript">
+                $(document).ready(function() {
+         
+                    $("#ComboProvinciasId").change(function() {
+                        fillCombo("cmbPoblaciones", $("#ComboProvinciasId").val());
+                    });
+                });
+
+                //****Ajax Example****
+                function fillCombo(updateId, value) {
+                    
+                    $.ajax({
+                        url: '/PoblacionPorProvincia',
+                        type: 'POST',
+                        cache: false,
+                        data: value,
+                        dataType: 'json',
+                        success: function (data) {
+                            $("#"+updateId).empty();
+                            $.each(data, function(i, item) {$("#"+updateId).append("<option id='" + item.Id +"'>" + item.Name + "</option>");
+                            });
+                            
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            //alert('error - ' + textStatus);
+                            console.log('error', textStatus, errorThrown);
+                        }
+                    });
+                
+                
+                    //$.getJSON("<%= Url.Action("PoblacionPorProvincia") %>" + "/" + value,
+                    //                 function(data) {
+                    //                     $("#"+updateId).empty();
+                    //                     $.each(data, function(i, item) {$("#"+updateId).append("<option id='" + item.Id +"'>" + item.Name + "</option>");
+                    //                     });
+                    //                 });
+                }
+
+                }
+            </script>
+        </div>
+    </body>
+</html>

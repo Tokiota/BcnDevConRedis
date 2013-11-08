@@ -1,0 +1,13 @@
+﻿<Window x:Class="POC.UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="600" Width="600">
+    <StackPanel x:Name="Main" Margin="0,33,2,13">
+        <TextBox Name="Mensajes"/>
+        <Button Content="Agregar" Click="AgregarProducto"/>
+        <DataGrid Name="Datos" HorizontalAlignment="Left" Margin="10,10,10,10" VerticalAlignment="Top"/>
+        
+
+
+    </StackPanel>
+</Window>
